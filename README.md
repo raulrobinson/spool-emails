@@ -47,7 +47,7 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "to": "rasysbox@hotmail.com",
+  "to": "email@mail.com",
   "subject": "Esto es lo que es",
   "body": "Esto es un envio desde ZohoMail 1"
 }'
