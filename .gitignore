@@ -31,3 +31,4 @@ replay_pid*
 
 ### Build ###
 project.build.directory
+target/
