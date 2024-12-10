@@ -1,0 +1,147 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "spool-emails",
+    "description": "Demo project for Spring Boot Queue Email with Rabbitmq",
+    "termsOfService": "License",
+    "contact": {
+      "name": "Raul Bolivar Navas",
+      "url": "https://www.rasysbox.com",
+      "email": "rasysbox@hotmail.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://www.rasysbox.com/License"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8085",
+      "description": "Demo project for Spring Boot Queue Email with Rabbitmq"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Email",
+      "description": "Email API"
+    },
+    {
+      "name": "Testing Email",
+      "description": "Testing Email API"
+    }
+  ],
+  "paths": {
+    "/api/v1/testing-emails/send": {
+      "post": {
+        "tags": [
+          "Testing Email"
+        ],
+        "operationId": "sendEmail",
+        "parameters": [
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/emails": {
+      "post": {
+        "tags": [
+          "Email"
+        ],
+        "summary": "Queue email",
+        "description": "Queue email",
+        "operationId": "queueEmail",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmailResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "EmailRequest": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
