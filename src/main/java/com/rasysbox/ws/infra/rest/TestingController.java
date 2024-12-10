@@ -27,14 +27,14 @@ public class TestingController {
         this.emailService = emailService;
     }
 
-    @PostMapping("/send")
+    @PostMapping("/direct-send")
     public ResponseEntity<EmailResponse> sendEmail(
             @RequestParam String to,
             @RequestParam String subject,
             @RequestParam String body) {
         try {
             emailService.sendEmail(to, subject, body);
-            return new ResponseEntity<>(new EmailResponse(to, "Email queued"), HttpStatus.OK);
+            return new ResponseEntity<>(new EmailResponse(to, "Email send"), HttpStatus.OK);
         } catch (Exception e) {
             log.error("Error sending email", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
