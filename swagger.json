@@ -32,7 +32,7 @@
     }
   ],
   "paths": {
-    "/api/v1/testing-emails/send": {
+    "/api/v1/testing-emails/direct-send": {
       "post": {
         "tags": [
           "Testing Email"
